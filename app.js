@@ -605,8 +605,8 @@ function saveOrder() {
 function addMore(){ 
   if(!currentTable) return; 
 
-  // 👉 Lưu bản sao giỏ hàng cũ
-  currentTable._oldCart = JSON.parse(JSON.stringify(currentTable.cart));
+  // 👉 Lưu bản sao giỏ hàng cũ (giữ locked & baseQty)
+  currentTable._oldCart = currentTable.cart.map(it => ({ ...it }));
 
   $('menu-list').style.display='block'; 
   createdFromMain = true; 
