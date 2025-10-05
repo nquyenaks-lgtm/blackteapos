@@ -765,6 +765,37 @@ function printFinalBill(rec){
     win.close();
   }, 500);
 }
+// Cài đặt menu
+function renderCategorySettings(){
+  const list = document.getElementById("categories-list");
+  if(!list) return;
+  list.innerHTML = "";
+  CATEGORIES.forEach((cat, idx) => {
+    const li = document.createElement("li");
+    li.className = "category-setting-item";
+    li.innerHTML = `
+      <span>${cat}</span>
+      <div class="cat-actions">
+        <button onclick="moveCategoryUp(${idx})">▲</button>
+        <button onclick="moveCategoryDown(${idx})">▼</button>
+      </div>
+    `;
+    list.appendChild(li);
+  });
+}
+
+function moveCategoryUp(idx){
+  if(idx <= 0) return;
+  [CATEGORIES[idx-1], CATEGORIES[idx]] = [CATEGORIES[idx], CATEGORIES[idx-1]];
+  renderCategorySettings();
+}
+
+function moveCategoryDown(idx){
+  if(idx >= CATEGORIES.length-1) return;
+  [CATEGORIES[idx+1], CATEGORIES[idx]] = [CATEGORIES[idx], CATEGORIES[idx+1]];
+  renderCategorySettings();
+}
+
 
 // Settings screens
 function openSettings(){ $('table-screen').style.display='none'; $('menu-screen').style.display='none'; $('history-screen').style.display='none'; $('settings-screen').style.display='block'; }
