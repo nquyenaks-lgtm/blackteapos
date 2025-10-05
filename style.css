@@ -440,16 +440,15 @@ header {
     padding: 3px 8px;
   }
 }
-// Màu chữ menu
-.item-name {
-  color: #4a69ad !important;   /* màu đậm */
+/* Đổi màu & style cho tên và giá món trong menu */
+.menu-name {
+  color: #4a69ad;   /* xanh giống header */
   font-weight: 600;
   font-size: 16px;
 }
 
-.item-price {
-  color: #7d8fd0 !important;   /* xanh nhạt hơn */
-  font-weight: 500;
+.menu-price {
+  color: #7a8fc4;      /* xám nhẹ cho giá */
   font-size: 14px;
 }
 /* 💙 Nút khách mang đi & khách ghé quán */
@@ -465,7 +464,3 @@ header {
   transition: 0.2s ease;
 }
 
-#guestTakeAway:hover,
-#guestAtShop:hover {
-  background-color: #3d5b99 !important;  /* 💙 đậm hơn chút khi hover */
-}
