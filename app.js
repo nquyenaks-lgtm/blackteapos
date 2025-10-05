@@ -537,7 +537,7 @@ function changeQty(id, delta){
   if(it){ 
     if(it.locked){ 
       // ✅ Nếu là món đã order, không cho giảm thấp hơn baseQty
-      if(delta < 0 && it.qty <= it.baseQty) return;  
+      if(delta < 0 && it.qty <= (it.baseQty ?? 0)) return;  
     }
 
     it.qty += delta; 
@@ -562,6 +562,7 @@ function changeQty(id, delta){
   renderCart(); 
 }
 
+
 // cart
 function renderCart(){ const ul = $('cart-list'); ul.innerHTML = ''; if(!currentTable || !currentTable.cart.length){ ul.innerHTML = '<div class="small">Chưa có món</div>'; $('total').innerText='0'; return; } let total=0; currentTable.cart.forEach(it=>{ total += it.price*it.qty; const li=document.createElement('li'); li.innerHTML = '<div><div style="font-weight:700">'+it.name+'</div><div class="small">'+fmtV(it.price)+' x '+it.qty+'</div></div><div style="font-weight:700">'+fmtV(it.price*it.qty)+'</div>'; ul.appendChild(li); }); $('total').innerText = fmtV(total); }
 
@@ -579,7 +580,7 @@ function saveOrder() {
   currentTable.cart = currentTable.cart.map(it => ({
     ...it,
     locked: true,
-    baseQty: (typeof it.baseQty === 'number') ? it.baseQty : it.qty
+    baseQty: (typeof it.baseQty === 'number' && it.baseQty > 0) ? it.baseQty : it.qty
   }));
 
   const idx = TABLES.findIndex(t => t.id === currentTable.id);
@@ -600,6 +601,8 @@ function saveOrder() {
   // về màn hình chính
   backToTables && backToTables();
 }
+
+
 
 // table actions
 function addMore(){ 
