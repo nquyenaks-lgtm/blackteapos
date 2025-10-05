@@ -440,17 +440,6 @@ header {
     padding: 3px 8px;
   }
 }
-/* Đổi màu & style cho tên và giá món trong menu */
-.menu-name {
-  color: #4a69ad;   /* xanh giống header */
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.menu-price {
-  color: #7a8fc4;      /* xám nhẹ cho giá */
-  font-size: 14px;
-}
 /* 💙 Nút khách mang đi & khách ghé quán */
 #guestTakeAway,
 #guestAtShop {
